@@ -1,4 +1,4 @@
-# Rental Car Application
+# Grocery Shopping Application
 
 ## Ruby Terminal App
 

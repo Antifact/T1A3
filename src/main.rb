@@ -17,7 +17,7 @@ class MainMenu
     puts ''
     puts "--------- Grocery Shopping!! ---------"
     puts ''
-    prompt.select("What would you like to do?:") do |menu|
+    prompt.select("What would you like to do?:", cycle: true) do |menu|
       menu.choice "Shop",->{shopMenu}
       menu.choice "View Cart",->{cart}
       menu.choice "Quit", ->{exit}

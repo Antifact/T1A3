@@ -1,7 +1,7 @@
 def shopMenu
     clear
     puts ''
-    prompt.select("What are we looking for?") do |menu|
+    prompt.select("What're we looking for?", cycle: true) do |menu|
       menu.choice "Fruit & Veg"
       menu.choice "Meat & Deli"
       menu.choice "Bakery"
@@ -16,9 +16,10 @@ end
 def cart
   clear
   puts ''
-  prompt.select("Your Cart") do |menu|
-    menu.choice "P3 Choice 1"
-    menu.choice "P3 Choice 2"
-    menu.choice "P3 Choice 3"
+  prompt.select("Your Cart", cycle: true) do |menu|
+    menu.choice "View Cart"
+    menu.choice "Edit Cart"
+    menu.choice "Checkout"
+    menu.choice "Return",->{firstMenu}
   end
 end

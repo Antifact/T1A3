@@ -1,5 +1,9 @@
 # requirements
 require 'tty-prompt'
+require_relative './classes/menus'
+require_relative './classes/item'
+require_relative './methods/stuff'
+
 
 class MainMenu
   attr_accessor :prompt
@@ -9,32 +13,14 @@ class MainMenu
   end
 
   def firstMenu
-    system "clear"
+    clear
+    puts ''
     puts "--------- Grocery Shopping!! ---------"
+    puts ''
     prompt.select("What would you like to do?:") do |menu|
       menu.choice "Shop",->{shopMenu}
       menu.choice "View Cart",->{cart}
       menu.choice "Quit", ->{exit}
-    end
-  end
-
-  def shopMenu
-    system "clear"
-    prompt.select("Customer Management") do |menu|
-      menu.choice "New Customer"
-      menu.choice "Modify Customer"
-      menu.choice "Delete Customer"
-      menu.choice "Display Customers"
-      menu.choice "Return"
-    end
-  end
-
-  def cart
-    system "clear"
-    prompt.select("Paragraph 3") do |menu|
-      menu.choice "P3 Choice 1"
-      menu.choice "P3 Choice 2"
-      menu.choice "P3 Choice 3"
     end
   end
 end

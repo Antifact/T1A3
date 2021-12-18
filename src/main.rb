@@ -1,29 +1,75 @@
 # requirements
 require 'tty-prompt'
-require_relative './classes/menus'
-require_relative './classes/item'
+require_relative './classes/Shop'
+require_relative './classes/ShopItem'
+require_relative './classes/Cart'
+require_relative './classes/CartItem'
 require_relative './methods/stuff'
 
-
-class MainMenu
+class Menu
   attr_accessor :prompt
 
   def initialize
     @prompt = TTY::Prompt.new
+    @shop = Shop.new
   end
 
-  def firstMenu
+  def main_menu
     clear
-    puts ''
+    puts
     puts "--------- Grocery Shopping!! ---------"
-    puts ''
+    puts
     prompt.select("What would you like to do?:", cycle: true) do |menu|
-      menu.choice "Shop",->{shopMenu}
-      menu.choice "View Cart",->{cart}
+      menu.choice "Shop",->{shop_menu}
+      menu.choice "View Cart",->{cart_menu}
       menu.choice "Quit", ->{exit}
+    end
+  end
+
+  def shop_menu
+    clear
+    puts
+    prompt.select("What're we looking for?", cycle: true) do |menu|
+      
+      @shop.items.each do |category, items|
+        menu.choice category,->{category_menu(items)}
+      end
+      
+      menu.choice "Return",->{main_menu}
+    end
+  end
+
+ def category_menu(category)
+  clear
+  puts
+    prompt.select("what want", cycle:true) do |menu|
+      category.each do |item|
+        menu.choice item.name + " - $" + item.price.to_s,->{qty_menu(item)}
+      end
+    
+      menu.choice "Return",->{shop_menu}
+    end
+ end
+
+ def qty_menu(item)
+  qty = prompt.ask("how many (1-9)") { |q| q.in("1-9") }
+
+  prompt.ask(qty + " " + item.name + " into cart. \n\nPress enter to return.")
+
+  shop_menu
+ end
+
+  def cart_menu
+    clear
+    puts
+    prompt.select("Your Cart", cycle: true) do |menu|
+      menu.choice "View Cart"
+      menu.choice "Edit Cart"
+      menu.choice "Checkout"
+      menu.choice "Return",->{main_menu}
     end
   end
 end
 
-main_menu = MainMenu.new
-main_menu.firstMenu
+main_menu = Menu.new
+main_menu.main_menu

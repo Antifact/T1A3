@@ -3,6 +3,6 @@ class Cart
 
     # holds cartItems
     def initialize()
-        @items = {}
+        @items = []
     end
 end

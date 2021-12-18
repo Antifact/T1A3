@@ -12,6 +12,7 @@ class Menu
   def initialize
     @prompt = TTY::Prompt.new
     @shop = Shop.new
+    @cart = Cart.new
   end
 
   def main_menu
@@ -56,6 +57,10 @@ class Menu
 
   prompt.ask(qty + " " + item.name + " into cart. \n\nPress enter to return.")
 
+  cartItem = CartItem.new(item, qty)
+  
+  @cart.items.push(cartItem)
+
   shop_menu
  end
 
@@ -63,8 +68,10 @@ class Menu
     clear
     puts
     prompt.select("Your Cart", cycle: true) do |menu|
-      menu.choice "View Cart"
-      menu.choice "Edit Cart"
+      @cart.items.each do |item|
+        menu.choice item.qty + "x " + item.item.name
+      end
+      
       menu.choice "Checkout"
       menu.choice "Return",->{main_menu}
     end

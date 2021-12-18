@@ -55,11 +55,17 @@ class Menu
  def qty_menu(item)
   qty = prompt.ask("how many (1-9)") { |q| q.in("1-9") }
 
-  prompt.ask(qty + " " + item.name + " into cart. \n\nPress enter to return.")
+  @cart.items.each do |cart_item|
+    if cart_item.item == item
+      cart_item.qty = cart_item.qty + qty.to_i
+      puts cart_item.qty
+    else
+      cartItem = CartItem.new(item, qty.to_i)
+      @cart.items.push(cartItem)
+    end
+  end
 
-  cartItem = CartItem.new(item, qty)
-  
-  @cart.items.push(cartItem)
+  prompt.ask(qty + " " + item.name + " into cart. \n\nPress enter to return.")
 
   shop_menu
  end
@@ -72,11 +78,10 @@ class Menu
         menu.choice item.qty + "x " + item.item.name
       end
       
-      menu.choice "Checkout"
+      menu.choice "Checkout",->{checkout}
       menu.choice "Return",->{main_menu}
     end
   end
 end
-
 main_menu = Menu.new
 main_menu.main_menu

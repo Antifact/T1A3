@@ -1,3 +1,5 @@
+# all of the items and categories in the shop.
+
 class Shop
     attr_accessor :items
 

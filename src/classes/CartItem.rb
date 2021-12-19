@@ -1,3 +1,5 @@
+# how we store an item inside the Cart.items array.
+
 class CartItem
     attr_accessor :item, :qty
 

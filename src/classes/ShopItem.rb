@@ -1,3 +1,5 @@
+# how we store an item in the shop.
+
 class ShopItem
     attr_accessor :name, :price
 

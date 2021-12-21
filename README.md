@@ -1,14 +1,10 @@
 # Grocery Shopping Application
 
-## Ruby Terminal App
-
 Link to [repo](https://github.com/Antifact/ruby-terminal-app "GitHub Repository")
-
-## About
 
 ### Description
 
-This application is designed to make purchasing groceries much easier. The aim is to streamline and create and easy-to-use shopping experience for users to purchase items!!
+The purpose of this application is to create an easy-to-use shopping experience for users to purchase items from a shop. The target audience for this application are shoppers who would prefer to do their shopping online or quickly. Instead of having to deal with the new worry of social distancing in stores or having users struggle to navigate an online shop website, shoppers can use this application to cut straight to the point of their shopping experience. Users are able to add items to their cart, and checkout like they would in-store, but through a terminal application. 
 
 ### Functionality 
 
@@ -55,4 +51,3 @@ If the user views their cart without shopping, they will be made aware that ther
 ### Control Flow
 
 ![flowchart](docs/flowchart.png)
-
